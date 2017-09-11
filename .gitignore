@@ -1,4 +1,8 @@
 BattleTank/Content/StarterContent/
-BattleTank/Content/
-*.png
-Tank model/
+BattleTank/Content/images/
+Heightmaps/
+BattleTank/Content/Tank/
+BattleTank/Content/_Level/
+BattleTank/Content/Battleground_High_sharedassets/
+BattleTank/Content/MLandscape.uasset
+BattleTank/Content/MLandscape_2.uasset
