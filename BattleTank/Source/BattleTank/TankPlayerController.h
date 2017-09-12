@@ -17,8 +17,12 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 	
 	
 public:
+	// returns pointer to Tank object
+	ATank* GetControlledTank() const;
 
-	//ATank* GetControlledTank() const;
-
-	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+private:
+	void Logger();
 };
