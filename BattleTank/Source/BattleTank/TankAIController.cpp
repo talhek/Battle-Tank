@@ -20,7 +20,7 @@ auto* ATankAIController::GetPlayerTank() const {
 	//	return (PlayerTank);
 	return GetWorld()->GetFirstPlayerController()->GetPawn();
 }
-
+/*
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -42,10 +42,15 @@ void ATankAIController::AimTowardsCrosshair()
 
 bool ATankAIController::GetSightRayHitLocation(FVector & OutHitLocation) const
 {
-	OutHitLocation = FVector(1.0);
+	//Find the crosshair position
+	int32 ViewportSizeX, ViewportSizeY;
+	//De-project the screen position of the crosshair to a world direction
+	//Line-trace along that look direction, and see what we hit(up to max range)
+	
+
 	return true;
 }
-
+*/
 
 
 void ATankAIController::Logger() {

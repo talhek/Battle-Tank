@@ -18,13 +18,14 @@ public:
 	auto* GetControlledTank() const;
 protected:
 	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaTime) override;
+	//virtual void Tick(float DeltaTime) override;
 
 private:
 	void Logger();
-
+	/*
 	//Start the tank moving the barrel so that a shot would hit
 	//where the crosshair intersects the world
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector & OutHitLocation) const;
+	*/
 };
