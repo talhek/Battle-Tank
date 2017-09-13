@@ -19,6 +19,8 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 public:
 	// returns pointer to Tank object
 	ATank* GetControlledTank() const;
+	bool GetSightRayHitLocation(FVector & OutHitLocation) const;
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,7 +32,6 @@ private:
 	//Start the tank moving the barrel so that a shot would hit
 	//where the crosshair intersects the world
 	void AimTowardsCrosshair();
-	bool GetSightRayHitLocation(FVector & OutHitLocation) const;
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
