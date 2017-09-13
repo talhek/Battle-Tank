@@ -18,9 +18,10 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 	
 public:
 	// returns pointer to Tank object
-	ATank* GetControlledTank() const;
+	auto* GetControlledTank() const;
 	bool GetSightRayHitLocation(FVector & OutHitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+	bool GetLookPlayerHitLocation(FVector LookDirection, FVector& OutHitLocation) const ;
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,4 +38,8 @@ private:
 	float CrossHairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.4;
+	UPROPERTY(Editanywhere)
+		float LineTraceRange = 1000000;
+	FVector OutHitLocation = FVector();
+
 };
