@@ -24,7 +24,7 @@ auto* ATankAIController::GetPlayerTank() const {
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Warning, TEXT("Ticked every frame"));
+	AimTowardsCrosshair();
 
 }
 void ATankAIController::AimTowardsCrosshair()
@@ -32,8 +32,18 @@ void ATankAIController::AimTowardsCrosshair()
 	if (!GetControlledTank()) {
 		return;
 	}
-	//Get world location if lintrace hits the landscape
-	  //tell controlled tank to aim at this point
+	FVector OutHitLocation = FVector();
+	if (GetSightRayHitLocation(OutHitLocation)) {
+		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
+		//Get world location of lintrace hits the landscape
+		//TODO tell controlled tank to aim at this point
+	}
+}
+
+bool ATankAIController::GetSightRayHitLocation(FVector & OutHitLocation) const
+{
+	OutHitLocation = FVector(1.0);
+	return true;
 }
 
 
