@@ -37,9 +37,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
-	float CrossHairYLocation = 0.4;
+	float CrossHairYLocation = 0.3333;
 	UPROPERTY(Editanywhere)
 	float LineTraceRange = 1000000;
-	FVector OutHitLocation = FVector();
 
 };
