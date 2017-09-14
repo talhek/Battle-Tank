@@ -18,6 +18,15 @@ ATank* ATankAIController::GetPlayerTank() const {
 
 	return  Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 }
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	ATank* AiTank = GetControlledTank();
+	AiTank->AimAt(GetPlayerTank()->GetActorLocation());
+	UE_LOG(LogTemp, Warning, TEXT("aiming at location: %s"), *GetPlayerTank()->GetActorLocation().ToString());
+
+
+}
 
 void ATankAIController::Logger() {
 	ATank* LogTank = GetControlledTank();
