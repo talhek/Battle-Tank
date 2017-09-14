@@ -8,9 +8,9 @@ void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
 	//Logger();
 }
-auto* ATankPlayerController::GetControlledTank() const
+ATank* ATankPlayerController::GetControlledTank() const
 {
-	return GetPawn();
+	return Cast<ATank>(GetPawn());
 }
 void ATankPlayerController::Tick(float DeltaTime)
 {
@@ -70,7 +70,7 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 
 }
 void ATankPlayerController::Logger() {
-	ATank *LogTank = Cast<ATank>(GetControlledTank());
+	ATank *LogTank = GetControlledTank();
 	UE_LOG(LogTemp, Warning, TEXT("TankPlayerController initiated"));
 	if (LogTank) {
 		UE_LOG(LogTemp, Warning, TEXT("The Tank is: %s"), *(LogTank->GetName()));

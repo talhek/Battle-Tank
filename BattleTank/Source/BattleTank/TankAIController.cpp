@@ -11,51 +11,17 @@ void ATankAIController::BeginPlay(){
 	
 }
 
-auto* ATankAIController::GetControlledTank() const {
-	return GetPawn();
+ATank* ATankAIController::GetControlledTank() const {
+	return Cast<ATank>(GetPawn());
 }
-auto* ATankAIController::GetPlayerTank() const {
-	//auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
-	//if (PlayerTank)
-	//	return (PlayerTank);
-	return GetWorld()->GetFirstPlayerController()->GetPawn();
-}
-/*
-void ATankAIController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	AimTowardsCrosshair();
+ATank* ATankAIController::GetPlayerTank() const {
 
+	return  Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 }
-void ATankAIController::AimTowardsCrosshair()
-{
-	if (!GetControlledTank()) {
-		return;
-	}
-	FVector OutHitLocation = FVector();
-	if (GetSightRayHitLocation(OutHitLocation)) {
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
-		//Get world location of lintrace hits the landscape
-		//TODO tell controlled tank to aim at this point
-	}
-}
-
-bool ATankAIController::GetSightRayHitLocation(FVector & OutHitLocation) const
-{
-	//Find the crosshair position
-	int32 ViewportSizeX, ViewportSizeY;
-	//De-project the screen position of the crosshair to a world direction
-	//Line-trace along that look direction, and see what we hit(up to max range)
-	
-
-	return true;
-}
-*/
-
 
 void ATankAIController::Logger() {
-	ATank* LogTank = Cast<ATank>(GetControlledTank());
-	ATank* PlayerTank = Cast<ATank>(GetPlayerTank());
+	ATank* LogTank = GetControlledTank();
+	ATank* PlayerTank =GetPlayerTank();
 
 	UE_LOG(LogTemp, Warning, TEXT("Tank AI initiated"));
 
