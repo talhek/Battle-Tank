@@ -21,10 +21,13 @@ ATank* ATankAIController::GetPlayerTank() const {
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	ATank* AiTank = GetControlledTank();
-	AiTank->AimAt(GetPlayerTank()->GetActorLocation());
-	UE_LOG(LogTemp, Warning, TEXT("aiming at location: %s"), *GetPlayerTank()->GetActorLocation().ToString());
-
+	if (GetControlledTank()) {
+		ATank* AiTank = GetControlledTank();
+		if (GetPlayerTank()) {
+			AiTank->AimAt(GetPlayerTank()->GetActorLocation());
+			UE_LOG(LogTemp, Warning, TEXT("aiming at location: %s"), *GetPlayerTank()->GetActorLocation().ToString());
+		}
+	}
 
 }
 
