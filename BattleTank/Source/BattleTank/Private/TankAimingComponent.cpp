@@ -22,6 +22,10 @@ void UTankAimingComponent::BeginPlay()
 	// ...
 	
 }
+void UTankAimingComponent::SetBarrel(UStaticMeshComponent* BarrelToSet)
+{
+	this->Barrel = BarrelToSet;
+}
 
 
 // Called every frame
