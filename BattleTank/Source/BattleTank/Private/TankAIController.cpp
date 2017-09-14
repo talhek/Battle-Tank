@@ -25,7 +25,6 @@ void ATankAIController::Tick(float DeltaTime)
 		ATank* AiTank = GetControlledTank();
 		if (GetPlayerTank()) {
 			AiTank->AimAt(GetPlayerTank()->GetActorLocation());
-			UE_LOG(LogTemp, Warning, TEXT("aiming at location: %s"), *GetPlayerTank()->GetActorLocation().ToString());
 		}
 	}
 
