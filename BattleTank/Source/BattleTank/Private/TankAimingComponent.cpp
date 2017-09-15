@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
-
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -22,9 +22,13 @@ void UTankAimingComponent::BeginPlay()
 	// ...
 	
 }
-void UTankAimingComponent::SetBarrel(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
 {
 	this->Barrel = BarrelToSet;
+}
+UStaticMeshComponent* UTankAimingComponent::GetBarrelComponent() const
+{
+	return this->Barrel;
 }
 
 
@@ -34,9 +38,10 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 }
-void UTankAimingComponent::Logger( FVector OutHitLocation) {
-	auto TankName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT(" %s is aiming at %s"),*TankName, *OutHitLocation.ToString());
+void UTankAimingComponent::AimAt( FVector OutHitLocation, float LaunchSpeed) {
+	//auto TankName = GetOwner()->GetName();
+	//auto BarrelLocation = GetBarrelComponent()->GetComponentLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT(" Firing at launch speed: %f"), LaunchSpeed);
 
 }
 
