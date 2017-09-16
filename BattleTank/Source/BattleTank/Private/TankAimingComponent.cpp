@@ -3,8 +3,10 @@
 #include "Public/TankAimingComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "TankBarrel.h"
+#include "TankTurrent.h"
 #include "Engine/World.h" //<-- needed for GetOwner()! UE:4.17.1
 #include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
 {
@@ -26,13 +28,28 @@ void UTankAimingComponent::BeginPlay()
 }
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet)
+	{
+		return;
+	}
 	this->Barrel = BarrelToSet;
 }
 UTankBarrel* UTankAimingComponent::GetBarrelComponent() const
 {
 	return this->Barrel;
 }
-
+void UTankAimingComponent::SetTurrentReference(UTankTurrent* TurrentToSet)
+{
+	if (!TurrentToSet)
+	{
+		return;
+	}
+	this->Turrent = TurrentToSet;
+}
+UTankTurrent* UTankAimingComponent::GetTurrentComponent() const
+{
+	return this->Turrent;
+}
 
 // Called every frame
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -77,9 +94,20 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed) {
 }
 void UTankAimingComponent::MoveBarrelTo(FVector AimTarget)
 {
-	FRotator BarrelRotator = this->Barrel->GetForwardVector().Rotation();
+
+	//auto BarrelRotator = (Barrel->GetRightVector()).Rotation();
+	FRotator BarrelRotator = (GetBarrelComponent()->GetForwardVector()).Rotation();
 	FRotator AimAsRotator = AimTarget.Rotation();
 	FRotator DeltaRotator = BarrelRotator - AimAsRotator;
 
 	this->Barrel->Elevate(DeltaRotator.Pitch); 
+	if (FMath::Abs(DeltaRotator.Yaw) < 180)
+	{
+		Turrent->Rotate(DeltaRotator.Yaw);
+	}
+	else // Avoid going the long-way round
+	{
+		Turrent->Rotate(-DeltaRotator.Yaw);
+	}
+
 }
