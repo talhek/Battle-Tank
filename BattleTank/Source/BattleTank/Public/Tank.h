@@ -7,7 +7,9 @@
 #include "Tank.generated.h"
 
 class UTankBarrel; //Forward Deceleration
+class UTankTurrent;
 class UTankAimingComponent;
+
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -23,8 +25,9 @@ public:
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-
+		void SetBarrelReference(UTankBarrel* BarrelToSet);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+		void SetTurrentReference(UTankTurrent* TurrentToSet);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
