@@ -57,9 +57,18 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed) {
 		return;
 	FVector OutLaunchVelocity = FVector();
 	FVector StartLocation = this->Barrel->GetSocketLocation(FName("Projectile"));
-	bool bAimSolution = UGameplayStatics::SuggestProjectileVelocity(this,
-		OutLaunchVelocity, StartLocation, OutHitLocation, LaunchSpeed, false, 0, 0,
-		ESuggestProjVelocityTraceOption::DoNotTrace);
+	bool bAimSolution = UGameplayStatics::SuggestProjectileVelocity
+	(
+		this,
+		OutLaunchVelocity,
+		StartLocation,
+		OutHitLocation,
+		LaunchSpeed,
+		false,
+		0,
+		0,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	);
 
 	if (bAimSolution) {
 		// Calculate the OutLaunchVelocity
