@@ -40,15 +40,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 }
-void UTankAimingComponent::MoveBarrelTo(FVector AimTarget)
-{
-	//TODO need to work out difference between starting position and target position,
-	FRotator BarrelRotator = this->Barrel->GetForwardVector().Rotation();
-	FRotator AimAsRotator = AimTarget.Rotation();
-	FRotator DeltaRotator = BarrelRotator - AimAsRotator;
 
-	this->Barrel->Elevate(5); //TODO remove magic number
-}
 
 void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed) {
 	auto TankName = GetOwner()->GetName();
@@ -83,4 +75,11 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed) {
 	}
 
 }
+void UTankAimingComponent::MoveBarrelTo(FVector AimTarget)
+{
+	FRotator BarrelRotator = this->Barrel->GetForwardVector().Rotation();
+	FRotator AimAsRotator = AimTarget.Rotation();
+	FRotator DeltaRotator = BarrelRotator - AimAsRotator;
 
+	this->Barrel->Elevate(DeltaRotator.Pitch); 
+}
