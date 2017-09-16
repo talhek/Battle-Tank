@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" //must be the last include
 
+class ATank;
 /**
  * 
  */
@@ -31,7 +31,7 @@ protected:
 private:
 	void Logger();
 	//Start the tank moving the barrel so that a shot would hit
-	//where the crosshair intersects the world
+	//where the cross hair intersects the world
 	void AimTowardsCrosshair();
 
 	UPROPERTY(EditAnywhere)
