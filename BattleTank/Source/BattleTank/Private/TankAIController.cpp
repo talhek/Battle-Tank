@@ -2,9 +2,12 @@
 
 #include "Public/TankAIController.h"
 #include "Engine/World.h"
+#include "Tank.h"
 
 
-void ATankAIController::BeginPlay(){
+
+void ATankAIController::BeginPlay()
+{
 	Super::BeginPlay();
 	PrimaryActorTick.bCanEverTick = true; //We won't be ticked by default  
 	Logger();
