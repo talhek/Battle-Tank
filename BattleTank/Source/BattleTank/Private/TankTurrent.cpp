@@ -10,7 +10,6 @@ void UTankTurrent::Rotate(float RelativeSpeed) {
 	auto RotationChange = RelativeSpeed * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
 	auto Rotation = RelativeRotation.Yaw + RotationChange;
 	SetRelativeRotation(FRotator(0, Rotation, 0));
-	UE_LOG(LogTemp, Warning, TEXT("%f Turrent Elevation "), Rotation);
 }
 
 
