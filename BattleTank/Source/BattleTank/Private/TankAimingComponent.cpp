@@ -98,7 +98,7 @@ void UTankAimingComponent::MoveBarrelTo(FVector AimTarget)
 	//auto BarrelRotator = (Barrel->GetRightVector()).Rotation();
 	FRotator BarrelRotator = (GetBarrelComponent()->GetForwardVector()).Rotation();
 	FRotator AimAsRotator = AimTarget.Rotation();
-	FRotator DeltaRotator = BarrelRotator - AimAsRotator;
+	FRotator DeltaRotator = AimAsRotator -BarrelRotator ;
 
 	this->Barrel->Elevate(DeltaRotator.Pitch); 
 	if (FMath::Abs(DeltaRotator.Yaw) < 180)
