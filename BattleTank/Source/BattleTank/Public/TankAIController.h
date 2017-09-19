@@ -23,4 +23,6 @@ protected:
 
 private:
 	void Logger();
+
+
 };

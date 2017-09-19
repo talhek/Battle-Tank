@@ -10,7 +10,7 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 	PrimaryActorTick.bCanEverTick = true; //We won't be ticked by default  
-	Logger();
+	//Logger();
 	
 }
 
@@ -28,6 +28,7 @@ void ATankAIController::Tick(float DeltaTime)
 		ATank* AiTank = GetControlledTank();
 		if (GetPlayerTank()) {
 			AiTank->AimAt(GetPlayerTank()->GetActorLocation());
+			AiTank->Fire();
 		}
 	}
 
