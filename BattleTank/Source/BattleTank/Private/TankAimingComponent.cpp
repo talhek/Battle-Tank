@@ -81,7 +81,6 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed) {
 
 	if (bAimSolution) {
 		// Calculate the OutLaunchVelocity
-		float Time = GetWorld()->GetTimeSeconds();
 		FVector AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTo(AimDirection);
 	}

@@ -9,6 +9,7 @@
 class UTankBarrel; //Forward Deceleration
 class UTankTurrent;
 class UTankAimingComponent;
+class AProjectile;
 
 
 UCLASS()
@@ -38,5 +39,10 @@ protected:
 private:
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 100000; // TODO: find sensible default speed
+
+	UPROPERTY(EditAnyWhere, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UTankBarrel* Barrel = nullptr;
 
 };
