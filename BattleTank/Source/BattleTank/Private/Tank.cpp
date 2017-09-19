@@ -49,14 +49,14 @@ void ATank::AimAt(FVector OutHitLocation)
 		 return;
 	 }
 	 else {
-		 float Time = GetWorld()->GetTimeSeconds();
-		 UE_LOG(LogTemp, Warning, TEXT("%f: Firing"), Time);
 
-		 GetWorld()->SpawnActor<AProjectile>(
+
+		 auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 			 ProjectileBlueprint,
 			 Barrel->GetSocketLocation(FName("Projectile")),
 			 Barrel->GetSocketRotation(FName("Projectile")));
 
+		 Projectile->LaunchProjectile(LaunchSpeed);
 	 }
 
 } 
