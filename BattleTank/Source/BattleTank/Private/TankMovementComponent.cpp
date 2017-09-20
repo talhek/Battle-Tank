@@ -5,3 +5,7 @@
 
 
 
+void UTankMovementComponent::IntendMoveForward(float Throw)
+{
+	UE_LOG(LogTemp, Warning, TEXT("MovementForward throw: %f "), Throw);
+}

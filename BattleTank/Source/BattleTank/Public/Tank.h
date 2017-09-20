@@ -10,7 +10,7 @@ class UTankBarrel; //Forward Deceleration
 class UTankTurrent;
 class UTankAimingComponent;
 class AProjectile;
-
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -37,18 +37,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UTankAimingComponent* TankAimingComponent = nullptr;
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-		float LaunchSpeed = 100000; // TODO: find sensible default speed
-
+		float ReloadTimeInSeconds = 3;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float LaunchSpeed = 100000; 
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-		float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
 
 };

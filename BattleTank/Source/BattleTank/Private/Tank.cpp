@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/Tank.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
+#include "Public/TankBarrel.h"
+#include "Public/Projectile.h"
 #include "TankAimingComponent.h"
+#include "Public/TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
@@ -11,7 +12,7 @@ ATank::ATank()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-
+	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Moving Component"));
 
 }
 
