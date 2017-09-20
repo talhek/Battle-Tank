@@ -4,7 +4,6 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankBarrel.h"
 #include "TankTurrent.h"
-#include "Engine/World.h" //<-- needed for GetOwner()! UE:4.17.1
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties

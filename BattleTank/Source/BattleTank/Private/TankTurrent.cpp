@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/TankTurrent.h"
-#include "Engine/World.h"
 
 void UTankTurrent::Rotate(float RelativeSpeed) {
 	//need to move it from one to another
