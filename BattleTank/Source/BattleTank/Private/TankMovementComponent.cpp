@@ -1,29 +1,48 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TankMovementComponent.h"
+#include "Public/TankMovementComponent.h"
 #include "Public/TankTracks.h"
 
 
 
+void UTankMovementComponent::Initialise(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet)
 
-void UTankMovementComponent::Initialize(UTankTracks *RightTrack, UTankTracks* LeftTrack)
 {
-	if ((!RightTrack) || (!LeftTrack)) {
-		return;
-	}
-	this->LeftTrack = LeftTrack;
-	this->RightTrack = RightTrack;
+	LeftTrack = LeftTrackToSet;
+	RightTrack = RightTrackToSet;
 }
+
+
+
+
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
+
 {
-	RightTrack->SetThrottleForward(Throw);
-	LeftTrack->SetThrottleForward(Throw);
-	UE_LOG(LogTemp, Warning, TEXT("MovementForward throw: %f "), Throw);
+	if (!LeftTrack || !RightTrack) { return; }
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(Throw);
 }
-void UTankMovementComponent::IntendMoveSideways(float Throw)
+
+
+
+void UTankMovementComponent::IntendTurnRight(float Throw)
+
 {
-	RightTrack->SetThrottleSideways(Throw);
-	LeftTrack->SetThrottleSideways(Throw);
-	UE_LOG(LogTemp, Warning, TEXT("MovementForward throw: %f "), Throw);
+	if (!LeftTrack || !RightTrack) { return; }
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
+	// TODO prevent double-speed due to dual control use
+
 }
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	IntendMoveForward(ForwardThrow);
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+	IntendTurnRight(RightThrow); 	
+	IntendMoveForward(ForwardThrow);
+}
+

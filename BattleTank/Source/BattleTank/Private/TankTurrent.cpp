@@ -7,8 +7,8 @@ void UTankTurrent::Rotate(float RelativeSpeed) {
 	//add rotator and each frame, move by x cm until getting to target position
 	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1.0f, +1.0f);
 	auto RotationChange = RelativeSpeed * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
-	auto Rotation = RelativeRotation.Yaw + RotationChange;
-	SetRelativeRotation(FRotator(0, Rotation, 0));
+	//auto Rotation = FMath::Clamp<float>( (RelativeRotation.Yaw + RotationChange), MinTurningDegrees, MaxTurningDegrees);
+	SetRelativeRotation(FRotator(0, (RelativeRotation.Yaw + RotationChange), 0));
 }
 
 

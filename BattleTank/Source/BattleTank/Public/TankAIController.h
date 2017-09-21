@@ -24,5 +24,8 @@ protected:
 private:
 	void Logger();
 
+	UPROPERTY(EditDefaultsOnly, Category = Paths)
+	float AcceptanceRadius = 3000.0f;
+
 
 };
